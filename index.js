@@ -8,6 +8,10 @@ const io = socketio(server);
 
 io.on('connection',(socket)=>{
     console.log("new user connected:",socket.id)
+    socket.on('msg_send',(data)=>{
+        console.log(data.msg)
+        io.emit('msg_rcvd',data.msg)
+    })
 })
 
 app.use('/', express.static(__dirname + '/public'));
