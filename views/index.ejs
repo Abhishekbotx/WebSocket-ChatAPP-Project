@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ChatApp SocketIO</h1>
+<input id="startchat" type="hidden" data-roomid="<%= id %>" value="Start chat">
+<input type="text" id="username" placeholder="username ... ">
+<input type="text" id="newMsg" placeholder="message...">
+<button id="btn">Send</button>
+
+<ul id="msgList">
+</ul>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    var socket = io();
+
+    let startchat = document.getElementById('startchat');
+    let btn = document.getElementById('btn');
+    let inputMsg = document.getElementById('newMsg');
+    let username = document.getElementById('username');
+    let messageList = document.getElementById('msgList');
+
+
+    socket.emit('join_room', {
+        roomid: startchat.getAttribute('data-roomid')
+    });
+
+    btn.onclick = function exec() {
+    socket.emit('msg_send', {
+        msg: inputMsg.value,
+        username: username.value,
+        roomid: startchat.getAttribute('data-roomid')
+    });
+};
+
+
+socket.on('msg_rcvd',(data)=>{
+    let listMsg=document.createElement('li');
+    listMsg.innerText=`${data.username}:${data.msg}`;
+    messageList.appendChild(listMsg)
+})
+
+
+</script>
+
+</body>
+</html>

@@ -6,13 +6,32 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-io.on('connection',(socket)=>{
+
+
+io.on('connection', (socket) => {
     console.log("new user connected:",socket.id)
-    socket.on('msg_send',(data)=>{
-        console.log(data.msg)
-        io.emit('msg_rcvd',data.msg)
-    })
-})
+    
+    socket.on('join_room', (data) => {
+        console.log("joining a room", data.roomid);
+        socket.join(data.roomid);
+    });
+
+    socket.on('msg_send', (data) => {
+        console.log(data);
+        io.to(data.roomid).emit('msg_rcvd', data);
+    });
+});
+
+app.set('view engine', 'ejs');
+app.use('/', express.static(__dirname + '/public'));
+
+app.get('/chat/:roomid', (req, res) => {
+    res.render('index', {
+        name: 'Sanket',
+        id: req.params.roomid
+    });
+});
+
 
 app.use('/', express.static(__dirname + '/public'));
 
