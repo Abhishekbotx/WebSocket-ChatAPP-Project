@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    height: 100vh; 
+    width: 100vw;
+    
+}
+
+.upper {
+   
+    color: rgb(63, 201, 45);
+    width: 107%;
+    height: 10%; /* 10% of the viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgba(2, 17, 28, 0.677);
+}
+
+.lower {
+    width: 107%;
+    height: 15%; 
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(12, 53, 83, 0.677);
+}
+
+
+#username{
+
+    width: 30%;
+    height: 2rem;
+    border-radius: 7px;
+    border-style: none;
+}
+
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    z-index: 5;
+  
+    
+}
+#newMsg{
+    border-style: none;
+    border-radius: 7px;
+    height: 2rem;
+    width: 75vh;
+}
+#btn{
+    width: 8%;
+    padding: 3%;
+    background-size: 60%;
+    background-color:#25D366;
+    height: 9%;
+    border-radius: 50%; /* Makes the button circular */
+    background-image: url('../send-button.png'); /* Specify the path to your PNG file */
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    
+}
+
+#image{
+    height: 7%;
+    width: 20px;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+
+#msgList{
+    scrollbar-width: thin; /* Set the width of the scrollbar */
+    scrollbar-color: #a7e09d #11123d;
+    scroll-behavior:smooth;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin: 0;
+    overflow: auto; 
+    height: 75%;
+    color: aliceblue;
+    background-color: #01020fe2;
+    padding-left: 20px;
+}
+
+
+
+li{
+    list-style: none;
+    margin: 8px 0;
+    padding: 5px 10px;
+    border-radius: 7px;
+    width: fit-content;
+    background-color: #25D366;
+    color: aliceblue;
+    white-space:wrap;
+    
+
+    
+}
+
+#typing{
+
+    position: absolute;
+    left:30px;
+    font-weight: 800;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+}
+
+#msgdiv{
+    display: flex;
+}

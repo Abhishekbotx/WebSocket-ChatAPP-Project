@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>CHAT App SocketIO</h1>
-    <input type="text" id="newMsg">
+    <h1>CHATX</h1>
+<input id="startchat" type="hidden" data-roomid="<%= id %>" value="Start chat">
+<input type="text" id="username" placeholder="username ... ">
+<div class="lower">
+    <input type="text" id="newMsg" placeholder="message...">
     <button id="btn">Send</button>
-    <ul id="msgList">
+</div>
         
     </ul>
     <script src="/socket.io/socket.io.js"></script>

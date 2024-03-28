@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet"
+        type="text/css"
+        href="/css/style.css">
+    
 </head>
 <body>
-    <h1>ChatApp SocketIO</h1>
+    <div class="upper">
+        <span id="typing">Typing</span>
+        <input type="text" id="username" placeholder="Enter your username ... ">
+        <h1>SOCKXCHAT</h1>
+    </div>
+    
 <input id="startchat" type="hidden" data-roomid="<%= id %>" value="Start chat">
-<input type="text" id="username" placeholder="username ... ">
-<input type="text" id="newMsg" placeholder="message...">
-<button id="btn">Send</button>
-
 <ul id="msgList">
+    <% for(let i=0; i < chats.length; i++) { %>
+        <li><%= chats[i].user %> : <%= chats[i].content %></li>
+     <% } %>
 </ul>
+<div class="lower">
+    <input type="text" id="newMsg" placeholder="message...">
+    <button id="btn">
+        
+    </button>
+</div>
+
+
 
 <script src="/socket.io/socket.io.js"></script>
 
@@ -25,8 +41,10 @@
     let inputMsg = document.getElementById('newMsg');
     let username = document.getElementById('username');
     let messageList = document.getElementById('msgList');
-
-
+    let messagediv=document.getElementById('msgdiv')
+    let typing=document.getElementById('typing')
+    let typingId=null;
+    typing.style.display='none'
     socket.emit('join_room', {
         roomid: startchat.getAttribute('data-roomid')
     });
@@ -43,8 +61,29 @@
 socket.on('msg_rcvd',(data)=>{
     let listMsg=document.createElement('li');
     listMsg.innerText=`${data.username}:${data.msg}`;
+    
     messageList.appendChild(listMsg)
 })
+
+inputMsg.addEventListener('keypress',()=>{
+    socket.emit('typing',{
+        roomid: startchat.getAttribute('data-roomid')
+    })
+})
+
+socket.on('someonetyping',()=>{
+    typing.style.display='block'
+    recieveTypingId=setTimeout(()=>{
+        typing.style.display='none'
+    },2000)
+})
+
+btn.addEventListener('click',()=>{
+        username.style.display='none'
+        typing.style.left="100px";
+        inputMsg.value="";
+})
+
 
 
 </script>
