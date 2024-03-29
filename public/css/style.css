@@ -20,6 +20,7 @@ body {
 }
 
 .lower {
+    padding: 10px 0;
     width: 107%;
     height: 15%; 
     display: flex;
@@ -35,6 +36,7 @@ body {
     height: 2rem;
     border-radius: 7px;
     border-style: none;
+    margin-left: 8rem;
 }
 
 h1{
@@ -47,14 +49,24 @@ h1{
     border-style: none;
     border-radius: 7px;
     height: 2rem;
-    width: 75vh;
+    width: 35rem;
 }
+
+@media screen and (max-width: 600px) {
+    #newMsg{
+        
+        height: 2.5rem;
+        width: 60rem;
+    }
+  }
 #btn{
-    width: 8%;
+    margin-right: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     padding: 3%;
     background-size: 60%;
     background-color:#25D366;
-    height: 9%;
+
     border-radius: 50%; /* Makes the button circular */
     background-image: url('../send-button.png'); /* Specify the path to your PNG file */
     /* background-size: cover; */
@@ -86,10 +98,19 @@ h1{
     width: auto;
     margin: 0;
     overflow: auto; 
-    height: 75%;
+    height: 72%;
     color: aliceblue;
-    background-color: #01020fe2;
+    
     padding-left: 20px;
+    background-image: url('../jason-leung-Xaanw0s0pMk-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+
+    li.sent-by-client {
+        align-self: flex-end; 
+        background-color: #0f9def; 
+        margin-right: 20px;
+    }
 }
 
 

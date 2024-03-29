@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('typing',(data)=>{
-        socket.broadcast.to(data.roomid).emit('someonetyping')
+        socket.broadcast.to(data.roomid).emit('someonetyping',{usermame:data.userName})
     })
 });
 

@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="upper">
-        <span id="typing">Typing</span>
+        <span id="typing">Typing...</span>
         <input type="text" id="username" placeholder="Enter your username ... ">
         <h1>SOCKXCHAT</h1>
     </div>
@@ -62,21 +62,27 @@ socket.on('msg_rcvd',(data)=>{
     let listMsg=document.createElement('li');
     listMsg.innerText=`${data.username}:${data.msg}`;
     
+    if (data.username === username.value) {
+        listMsg.classList.add('sent-by-client'); // Add class for messages sent by the client
+    }
     messageList.appendChild(listMsg)
 })
 
 inputMsg.addEventListener('keypress',()=>{
     socket.emit('typing',{
+        userName:username.value,
         roomid: startchat.getAttribute('data-roomid')
     })
 })
 
-socket.on('someonetyping',()=>{
-    typing.style.display='block'
-    recieveTypingId=setTimeout(()=>{
-        typing.style.display='none'
-    },2000)
-})
+socket.on('someonetyping', async (data) => {
+    console.log(data.username); // Corrected typo here
+    typing.innerText = ` ${data.usermame} is typing...` ; // Updated innerText
+    typing.style.display = 'block';
+    recieveTypingId = setTimeout(() => {
+        typing.style.display = 'none';
+    }, 2500);
+});
 
 btn.addEventListener('click',()=>{
         username.style.display='none'
