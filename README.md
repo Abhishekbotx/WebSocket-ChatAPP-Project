@@ -1,7 +1,8 @@
 # WebSocket | Live Chat Application
 
-## Preview
+## Preview  [Video Link](https://www.linkedin.com/posts/abhishek-raj-003bb3264_webdevelopment-realtimechat-expressjs-activity-7179923737171877888-KIU_?utm_source=share&utm_medium=member_desktop)
 ![This is an alt text.](./public/image.png "This is a sample image.")
+
 
 # SOCKXCHAT
 
